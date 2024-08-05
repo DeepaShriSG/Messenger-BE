@@ -8,26 +8,6 @@ Conversation history
 Initial message functionality
 Active user notifications
 Installation
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/yourusername/chatapp.git
-cd chatapp
-Install dependencies:
-
-bash
-Copy code
-npm install
-Create a .env file in the root directory and add your environment variables. Example:
-
-
-Start the development server:
-
-bash
-Copy code
-npm start
-The app should now be running on http://localhost:3000.
 
 Dependencies
 Here are the key dependencies used in the project:
@@ -47,27 +27,66 @@ Create a new user account or log in if you already have one.
 Start a conversation by selecting a user from the active users list.
 Send messages in the conversation window.
 View conversation history and manage ongoing conversations.
-API Endpoints
-POST /api/conversations: Create a new conversation
-POST /api/messages: Send a new message
-GET /api/conversations/
-: Get messages for a conversation
+
+User Routes
+GET /
+Description: Retrieve a list of all users.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.getUsers
+
+GET /:id
+Description: Retrieve a specific user by ID.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.getUserById
+
+POST /signup
+Description: Create a new user account.
+Auth Required: No
+Controller: UsersController.createUsers
+
+POST /login
+Description: Log in a user and return an authentication token.
+Auth Required: No
+Controller: UsersController.login
+
+Conversation Routes
+POST /startconvo
+Description: Start a new conversation between users.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.createConversation
+
+GET /getconvo/:id
+Description: Retrieve conversation details by ID.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.getConvo
+
+Message Routes
+POST /sendMessage
+Description: Send a new message in a conversation.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.sendMessage
+
+GET /getMessage/:id
+Description: Retrieve messages for a specific user.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.getUserMessages
+
+Password Management Routes
+POST /forgetpassword
+Description: Request a password reset link.
+Auth Required: No
+Controller: UsersController.forgotPassword
+
+POST /resetpassword
+Description: Reset the user's password.
+Auth Required: Yes (Authenticated users only)
+Controller: UsersController.resetPassword
+
 Socket Events
 connection: When a user connects
 disconnect: When a user disconnects
 message: When a new message is received
 userUpdate: When active users are updated
-Contributing
-If you want to contribute to ChatApp, follow these steps:
-
-Fork the repository
-Create a new branch (git checkout -b feature-branch)
-Make your changes
-Commit your changes (git commit -am 'Add new feature')
-Push to the branch (git push origin feature-branch)
-Create a new Pull Request
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 Acknowledgments
 React
